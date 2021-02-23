@@ -5,8 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.cdp.skill</groupId>
-    <artifactId>leetcode-easy-01</artifactId>
+    <artifactId>guava-collections-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>24.1-jre</version>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
