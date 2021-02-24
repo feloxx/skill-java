@@ -42,15 +42,13 @@ import java.util.stream.IntStream;
  */
 public class RemoveDuplicatesfromSortedArray {
 
+  // nums = Arrays.stream(nums).distinct().toArray();
+  // long result = Arrays.stream(nums).distinct().count();
+  // return (int)result;
+
   static
   class Solution {
     public int removeDuplicates(int[] nums) {
-
-      // nums = Arrays.stream(nums).distinct().toArray();
-      // long result = Arrays.stream(nums).distinct().count();
-      // return (int)result;
-
-
       if (nums == null || nums.length == 0) return 0;
       int p = 0;
       int q = 1;
