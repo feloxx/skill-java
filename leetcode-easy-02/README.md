@@ -13,3 +13,4 @@ easy 难度 第二阶段(10道题)
 ---
 
 * 67 二进制求和(Add Binary) [点击跳转](./src/main/java/org/cdp/skill/leetcode/AddBinary.java)
+* 69 x的平方根(Sqrt(x)) [点击跳转](./src/main/java/org/cdp/skill/leetcode/SqrtX.java)

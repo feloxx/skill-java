@@ -1,12 +1,7 @@
 package org.cdp.skill.leetcode;
 
-import com.sun.deploy.util.ArrayUtil;
-
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.TreeMap;
-
-import org.apache.commons.lang3.ArrayUtils;
+import java.util.BitSet;
+import java.util.stream.IntStream;
 
 /**
  * 67 二进制求和
@@ -27,44 +22,94 @@ import org.apache.commons.lang3.ArrayUtils;
  *
  * 思路:
  *
- * 可以先把2进制转换成10进制,计算完后再转换回去
+ * 第一种,使用内置包 Integer 可以先把2进制转换成10进制,计算完后再转换回去
+ * 但是这种有缺点,这些内置包都有些精度问题
+ * 如果字符串超过 33 位，不能转化为 Integer
+ * 如果字符串超过 65 位，不能转化为 Long
+ * 如果字符串超过 500000001 位，不能转化为 BigInteger
+ *
+ * 第二种,列竖式,末尾对齐,逐位相加,根据二进制的原则逢二进一.
+ * 最开始我也是这种想法,但是在类型转换上卡了很久
+ *
+ * 第三种,位运算
  */
 public class AddBinary {
 
-  // 自己想的
+  // 自己想的,列竖式
   // 11 98, 10 01 97, 00 96
   static
   class Solution {
     public String addBinary(String a, String b) {
-//      char[] arrA = a.toCharArray();
-//      char[] arrB = b.toCharArray();
-//
-//      int maxLen = 0;
-//      if (arrA.length > arrB.length) maxLen = arrA.length;
-//      else maxLen = arrB.length;
-//
-//      String result = "";
-//
-//
-//      for (int i = maxLen - 1; i >= 0; i--) {
-//        if (arrA[i] + arrB[i] == 98) {
-//          result += "0";
-//        } else if (arrA[i] + arrB[i] == 97) {
-//          result += "1";
-//        } else {
-//          result += "0";
-//        }
-//
-//      }
-//
-//
-//
-//      return new StringBuffer(result).reverse().toString();
-      int intA = Integer.parseInt(a, 2);
-      int intB = Integer.parseInt(b, 2);
-      int tempResult = intA + intB;
 
-      return Integer.toBinaryString(tempResult);
+      return "";
+    }
+  }
+
+  // 官方列竖式
+  static
+  class SolutionOfficial {
+    public String addBinary(String a, String b) {
+      StringBuffer ans = new StringBuffer();
+
+      int n = Math.max(a.length(), b.length()), carry = 0;
+      for (int i = 0; i < n; ++i) {
+        carry += i < a.length() ? (a.charAt(a.length() - 1 - i) - '0') : 0;
+        carry += i < b.length() ? (b.charAt(b.length() - 1 - i) - '0') : 0;
+        ans.append((char) (carry % 2 + '0'));
+        carry /= 2;
+      }
+
+      if (carry > 0) {
+        ans.append('1');
+      }
+      ans.reverse();
+
+      return ans.toString();
+    }
+  }
+
+  // 使用内置包
+  static
+  class SolutionInternal {
+    public String addBinary(String a, String b) {
+      return Integer.toBinaryString(
+        Integer.parseInt(a, 2)
+          +
+          Integer.parseInt(b, 2)
+      );
+    }
+  }
+
+  // 使用位运算 网上例子
+  static
+  class SolutionPos {
+    public String addBinary(String a, String b) {
+      BitSet bitsetA = new BitSet(a.length());
+      for (int i = 0; i < a.length(); i++) {
+        bitsetA.set(i, a.charAt(a.length() - i - 1) == '1');
+      }
+
+      BitSet bitsetB = new BitSet(b.length());
+      for (int i = 0; i < b.length(); i++) {
+        bitsetB.set(i, b.charAt(b.length() - i - 1) == '1');
+      }
+
+      while (!bitsetA.isEmpty()) {
+        BitSet tempB = BitSet.valueOf(bitsetB.toLongArray());
+        bitsetB.xor(bitsetA); // 执行逻辑异或设置该位集合参数
+        bitsetA.and(tempB);
+
+        BitSet newA = new BitSet(bitsetA.length() + 1);
+        bitsetA.stream().forEach(i -> newA.set(i + 1, true));
+        bitsetA = newA;
+      }
+
+      StringBuilder ret = new StringBuilder();
+      IntStream.range(0, bitsetB.length())
+        .mapToObj(i -> bitsetB.get(i) ? '1' : '0')
+        .forEach(ret::append);
+
+      return ret.length() == 0 ? "0" : ret.reverse().toString();
     }
   }
 
