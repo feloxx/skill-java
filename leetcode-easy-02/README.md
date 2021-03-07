@@ -1,8 +1,6 @@
-# leetcode-easy-01
+# leetcode-easy-02
 
 leetcode easy 难度 第二阶段(10道题)
-
-easy 难度 第二阶段(10道题)
 
 * 35 搜索插入位置(Search Insert Position) [点击跳转](./src/main/java/org/cdp/skill/leetcode/SearchInsertPosition.java)
 * 38 外观数列(Count and Say) [点击跳转](./src/main/java/org/cdp/skill/leetcode/CountAndSay.java)
@@ -16,3 +14,4 @@ easy 难度 第二阶段(10道题)
 * 69 x的平方根(Sqrt(x)) [点击跳转](./src/main/java/org/cdp/skill/leetcode/SqrtX.java)
 * 70 爬楼梯(Climbing Stairs) [点击跳转](./src/main/java/org/cdp/skill/leetcode/ClimbingStairs.java)
 * 83 删除排序链表中的重复元素(Remove Duplicates from Sorted List) [点击跳转](./src/main/java/org/cdp/skill/leetcode/RemoveDuplicatesFromSortedList.java)
+* 88 合并两个有序数组(Merge Sorted Array) [点击跳转](./src/main/java/org/cdp/skill/leetcode/MergeSortedArray.java)

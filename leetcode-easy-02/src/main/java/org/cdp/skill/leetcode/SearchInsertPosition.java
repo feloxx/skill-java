@@ -4,6 +4,7 @@ package org.cdp.skill.leetcode;
 /**
  * 35 搜索插入位置
  * Search Insert Position
+ * https://leetcode-cn.com/problems/search-insert-position
  *
  * 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
  *
@@ -42,17 +43,19 @@ public class SearchInsertPosition {
   static
   class Solution {
     public int searchInsert(int[] nums, int target) {
-      int left = 0, right = nums.length - 1;
+      int left = 0, right = nums.length - 1;  // 定义前指针和后指针
+
       while(left <= right) {
-        int mid = (left + right) / 2;
-        if(nums[mid] == target) {
+        int mid = (left + right) / 2;     // 每次循环会重新计算中间值
+        if(nums[mid] == target) {         // 如果中间的值相等则直接返回
           return mid;
-        } else if(nums[mid] < target) {
+        } else if(nums[mid] < target) {   // 如果中间的值小于,则中间值+1并赋给前指针
           left = mid + 1;
-        } else {
+        } else {                          // 否则则中间值-1并赋给后指针
           right = mid - 1;
         }
       }
+
       return left;
     }
   }
@@ -62,7 +65,7 @@ public class SearchInsertPosition {
   public static void main(String[] args) {
     Solution solution = new Solution();
 
-    int[] test1 = new int[]{1,3,5,6};
+    int[] test1 = new int[]{1,3,5,6,7,19,112,233};
     int test2 = 5;
     int test3 = 2;
 
