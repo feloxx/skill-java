@@ -102,7 +102,5 @@ public class ConvertSortedArrayToBinarySearchTree {
     int[] test1 = new int[]{-10,-3,0,5,9};
     TreeNode result1 = new SolutionMid().sortedArrayToBST(test1);
     System.out.println(result1.toString());
-
-
   }
 }
