@@ -12,3 +12,4 @@ leetcode easy 难度 第三阶段(10道题)
 
 * 111 二叉树的最小深度(Minimum Depth of Binary Tree) [点击跳转](./src/main/java/org/cdp/skill/leetcode/MinimumDepthOfBinaryTree.java)
 * 112 路径总和(Path Sum) [点击跳转](./src/main/java/org/cdp/skill/leetcode/PathSum.java)
+* 118 杨辉三角(Pascal's Triangle) [点击跳转](./src/main/java/org/cdp/skill/leetcode/PascalsTriangle.java)
